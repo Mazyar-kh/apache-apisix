@@ -1,0 +1,45 @@
+conf:
+  listen:
+    host: 0.0.0.0
+    port: 9000            # The port on which the Manager API should listen.
+
+  etcd:
+    endpoints:
+      - "http://127.0.0.1:2379"  # Endpoint for etcd.
+    prefix: "/apisix"            # Prefix used in etcd for APISIX configurations.
+
+  log:
+    level: warn         # Logging level.
+
+  # Remove or comment out the entire auth section to disable authentication
+  # auth:
+  #   secret:
+  #     secret: your-jwt-secret-key  # Secret for JWT token generation. Replace with a real secret key if enabling.
+  #     expire_time: 3600           # JWT token expiration time in seconds.
+  #     users:                      # List of users for login.
+  #       - username: admin
+  #         password: edd
+
+
+authentication:
+  secret: "your-secure-secret-key"  # Secret for JWT token generation. Replace with a real secret key.
+  expire_time: 3600                 # JWT token expiration time in seconds
+#  users:                            # List of users for login
+#    - username: admin
+#      password: edd1c9f034335f136f87ad84b625c8f1
+#    - username: user
+#      password: user
+
+  users:                            # List of users for login
+    - username: admin
+      password: edd1c9f034335f136f87ad84b625c8f1
+      role: admin
+    - username: user
+      password: user
+
+deployment:
+  admin:
+    admin_key:
+      - name: "admin"
+        key: edd1c9f034335f136f87ad84b625c8f1
+        role: admin
