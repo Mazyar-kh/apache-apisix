@@ -1,0 +1,66 @@
+conf:
+  listen:
+    port: 9000            # The port on which the `Manager API` should listen.
+
+  # SSL configuration (optional)
+  # ssl:
+  #   host: 127.0.0.1     # The address on which the `Manager API` should listen for HTTPS.
+  #   port: 9001          # The port on which the `Manager API` should listen for HTTPS.
+  #   cert: "/tmp/cert/example.crt" # Path of your SSL cert.
+  #   key: "/tmp/cert/example.key"  # Path of your SSL key.
+
+  allow_list:             # IP access control list
+    - 0.0.0.0           # Allow access from IPv4 127.0.0.1                 # Allow access from IPv6 ::1
+
+  etcd:
+    endpoints:            # etcd server addresses
+      - 127.0.0.1:2379
+    # Optional etcd authentication
+    # username: "root"
+    # password: "123456"
+    mtls:
+      key_file: ""        # Path of client-side key for mTLS
+      cert_file: ""       # Path of client-side cert for mTLS
+      ca_file: ""         # Path of CA cert for mTLS
+
+  # Log configuration (optional)
+  # log:
+  #   error_log:
+  #     level: warn       # Log level
+  #     file_path: /var/log/apisix-dashboard.log  # Log file path
+  #   access_log:
+  #     file_path: /var/log/apisix-dashboard.access.log  # Access log file path
+
+  max_cpu: 0             # Number of CPU threads used for parallelism. 0 uses all available cores.
+
+  # Security configuration (optional)
+  # security:
+  #   access_control_allow_origin: "http://httpbin.org"
+  #   access_control_allow_credentials: true
+  #   access_control_allow_headers: "Authorization"
+  #  access_control_allow_methods: "*"
+  #   x_frame_options: "deny"
+  #   content_security_policy: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src xx.xx.xx.xx:3000"
+
+authentication:
+  secret: "your-secure-secret-key"  # Secret for JWT token generation. Replace with a real secret key.
+  expire_time: 3600                 # JWT token expiration time in seconds
+  users:                            # List of users for login
+    - username: admin
+      password: edd1c9f034335f136f87ad84b625c8f1
+      role: admin
+    - username: user
+      password: user
+
+deployment:
+  admin:
+    admin_key:
+      - name: "admin"
+        key: edd1c9f034335f136f87ad84b625c8f1
+        role: admin
+
+
+
+
+
+
